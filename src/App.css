@@ -1,0 +1,60 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #171433b7;
+    height: 50px;
+}
+
+header > a {
+    margin: 0 50px;
+    color: rgb(253, 253, 253);
+    text-decoration: none;
+}
+
+header > a:hover {
+    text-decoration: underline;
+    color: rgb(118, 193, 206);
+    transform: scale(1.1);
+    transition: all 0.2s;
+}
+
+.menu_item {
+    display: block;
+    width: 100px;
+    font-size: 24px;
+    margin: 0 50px;
+}
+
+.active-link {
+    color: rgb(118, 193, 206);
+    text-decoration: underline;
+    transform: scale(1.1)
+}
+
+main {
+    flex: 1;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+footer {
+    background-color: #171433b7;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white
+}
+
