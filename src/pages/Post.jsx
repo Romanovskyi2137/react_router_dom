@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 function Post () {
@@ -11,16 +11,22 @@ function Post () {
             .then(res => res.json())
             .then(post => setPost(post))
     }), [id]);
-    const h2styles = {
-        textAlign: "center",
-        maxWidth: "1000px"
-        
-    }
+    const navigate = useNavigate();
+    const goBack = () => {navigate(-1)}
     return (
-        <>
-            <h2 style={h2styles}>{post.title}</h2>
-            <p>{post.body}</p>
-        </>
+        <div className="post_wrapper">
+            <div className="post_container">
+                <h2>{post.title}</h2>
+                <p>{post.body}</p>
+                <div className="back_button__container">
+                    <button
+                        onClick={goBack}
+                    >
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
     )
 };
 

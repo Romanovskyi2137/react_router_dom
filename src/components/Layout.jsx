@@ -13,8 +13,8 @@ function Layout () {
             <header>
                 <NavLink to="/" className={activeLink}>Start</NavLink>
                 <NavLink to="/home" className={activeLink}>Home</NavLink>
-                <NavLink to="/about" className={activeLink}>About</NavLink>
                 <NavLink to="/posts" className={activeLink}>Posts</NavLink>
+                <NavLink to="/about" className={activeLink}>About</NavLink>
             </header>
             <main style={{fontSize: "24px"}}>
                 <Outlet/>
