@@ -48,6 +48,17 @@ h1 {
     margin-top: 50px;
 }
 
+li {
+    padding-left: 35px;
+}
+
+li::before{
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: black;
+}
 
 footer {
     background-color: #171433b7;
