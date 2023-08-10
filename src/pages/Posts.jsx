@@ -1,25 +1,18 @@
 import React from "react";
-import {Link, useSearchParams} from "react-router-dom";
-import {useState, useEffect} from "react";
+import {Link, useLoaderData, useSearchParams, defer, useNavigate} from "react-router-dom";
 import PostFilter from "../components/PostFilter";
 
-function Posts (props) {
-    const [posts, setPosts] = useState([]);
+export function Posts (props) {
     const [searchParams, setSearchParams] = useSearchParams();
-    
-    useEffect((() => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(res => res.json())
-        .then(data => setPosts(data))
-        }), [])
-        const styles = {
-            display: "flex",
-            justifyContent: "center",
-            paddingTop: "30px"
-        };
+    const posts = useLoaderData();
+    console.log("oleg");
+    const styles = {
+        display: "flex",
+        justifyContent: "center",
+        paddingTop: "30px"
+    };
+    let filter = searchParams.get("search") || "";
 
-        let filter = searchParams.get("search") || "";
-        
     return (
         <div>
             <PostFilter/>
@@ -37,4 +30,9 @@ function Posts (props) {
     )
 };
 
-export default Posts
+
+
+export const postsLoader = async () => {
+    const user = localStorage.getItem("token");
+    return await fetch('https://jsonplaceholder.typicode.com/posts');
+};
