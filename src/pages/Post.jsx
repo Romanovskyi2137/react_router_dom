@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams, useLoaderData } from "react-router-dom";
+import { useNavigate, useParams, useLoaderData, defer, Await } from "react-router-dom";
+import PostBody from "../components/PostBody"
 
 
 export function Post () {
@@ -12,27 +13,26 @@ export function Post () {
     //         .then(res => res.json())
     //         .then(post => setPost(post))
     // }, []);
-    const post = useLoaderData();
-    const navigate = useNavigate();
-    const goBack = () => {navigate(-1)}
+    const {post} = useLoaderData();
     return (
         <div className="post_wrapper">
-            <div className="post_container">
-                <h2>{post.title}</h2>
-                <p>{post.body}</p>
-                <div className="back_button__container">
-                    <button
-                        onClick={goBack}
-                    >
-                        Back
-                    </button>
-                </div>
-            </div>
+            <Suspense fallback={<h3>Loading...</h3>}>
+                <Await resolve={post}>
+                    {(resolvedPost) => <PostBody />}
+                </Await>
+            </Suspense>
         </div>
     )
 };
 
+const getPost = async (id) => {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    return res.json()
+};
+
 
 export const postLoader = async ({params}) => {
-    return await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
+    return defer({
+        post: getPost(params.id)
+    })
 };
