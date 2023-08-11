@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 
 
 
-function PostFilter () {
+function PostFilter (props) {
     const [searchParamas, setSearchParams] = useSearchParams();
     
     const submitHandle = (e) => {

@@ -1,17 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLoaderData } from "react-router-dom";
 
 
-function Post () {
-    const {id} = useParams();
-    const [post, setPost] = useState({});
-    useEffect(() => {
+export function Post () {
+    // const {id} = useParams();
+    // const [post, setPost] = useState({});
+    // useEffect(() => {
 
-            fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-            .then(res => res.json())
-            .then(post => setPost(post))
-    }, []);
+    //         fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+    //         .then(res => res.json())
+    //         .then(post => setPost(post))
+    // }, []);
+    const post = useLoaderData();
     const navigate = useNavigate();
     const goBack = () => {navigate(-1)}
     return (
@@ -31,4 +32,7 @@ function Post () {
     )
 };
 
-export default Post
+
+export const postLoader = async ({params}) => {
+    return await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
+};

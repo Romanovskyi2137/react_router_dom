@@ -5,8 +5,8 @@ import Error from "./pages/Error";
 import Home from "./pages/Home";
 import StartPage from "./pages/StartPage";
 import Layout from "./components/Layout";
-import {Posts, postsLoader} from "./pages/Posts";
-import Post from "./pages/Post";
+import {Posts} from "./pages/Posts";
+import {Post, postLoader} from "./pages/Post";
 import RequireAuth from './hoc/RequireAuth';
 import Login from './pages/Login';
 import { AuthProvider } from './hoc/AuthProvider';
@@ -26,10 +26,8 @@ const router = createBrowserRouter(createRoutesFromElements(
                   <RequireAuth>
                     <Posts/>
                   </RequireAuth>
-                }
-                loader={postsLoader}
-                />
-              <Route path="posts/:id" element={<Post/>}/>
+                }/>
+              <Route path="posts/:id" element={<Post/>} loader={postLoader}/>
               <Route path="*" element={<Error/>}/>
               </Route>
 ));
