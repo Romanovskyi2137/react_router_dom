@@ -6,11 +6,12 @@ import { useNavigate, useParams } from "react-router-dom";
 function Post () {
     const {id} = useParams();
     const [post, setPost] = useState({});
-    useEffect((() => {
-        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+    useEffect(() => {
+
+            fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
             .then(res => res.json())
             .then(post => setPost(post))
-    }), [id]);
+    }, []);
     const navigate = useNavigate();
     const goBack = () => {navigate(-1)}
     return (

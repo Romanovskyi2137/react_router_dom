@@ -17,7 +17,10 @@ const router = createBrowserRouter(createRoutesFromElements(
               <Route index element={<StartPage/>}/>
               <Route path="login" element={<Login/>}/>
               <Route path="home" element={<Home/>}/>
-              <Route path="about" element={<About/>}/>
+              <Route path="about" element={<About/>}>
+                <Route path="contacts" element={<h3>here will be contacts component</h3>}/>
+                <Route path="servises" element={<h3>here will be servises component</h3>}/>
+              </Route>
               <Route path="about-us" element={<Navigate to="/about" replace/>}/>
               <Route path="posts" element={
                   <RequireAuth>
